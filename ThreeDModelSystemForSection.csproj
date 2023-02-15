@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1982059D-4FE4-4381-95DD-053C18400D4C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DotSpatialForm</RootNamespace>
+    <AssemblyName>DotSpatialForm</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotSpatial.Analysis">
+      <HintPath>DotSpatial_Full.1.7\DotSpatial.Analysis.dll</HintPath>
+    </Reference>
+    <Reference Include="DotSpatial.Controls">
+      <HintPath>DotSpatial_Full.1.7\DotSpatial.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="DotSpatial.Data">
+      <HintPath>DotSpatial_Full.1.7\DotSpatial.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="DotSpatial.Data.Forms">
+      <HintPath>DotSpatial_Full.1.7\DotSpatial.Data.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="DotSpatial.Extensions">
+      <HintPath>DotSpatial_Full.1.7\DotSpatial.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DotSpatial.Modeling.Forms">
+      <HintPath>DotSpatial_Full.1.7\DotSpatial.Modeling.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="DotSpatial.Mono">
+      <HintPath>DotSpatial_Full.1.7\DotSpatial.Mono.dll</HintPath>
+    </Reference>
+    <Reference Include="DotSpatial.Projections">
+      <HintPath>DotSpatial_Full.1.7\DotSpatial.Projections.dll</HintPath>
+    </Reference>
+    <Reference Include="DotSpatial.Projections.Forms">
+      <HintPath>DotSpatial_Full.1.7\DotSpatial.Projections.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="DotSpatial.Symbology">
+      <HintPath>DotSpatial_Full.1.7\DotSpatial.Symbology.dll</HintPath>
+    </Reference>
+    <Reference Include="DotSpatial.Symbology.Forms">
+      <HintPath>DotSpatial_Full.1.7\DotSpatial.Symbology.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="DotSpatial.Topology">
+      <HintPath>DotSpatial_Full.1.7\DotSpatial.Topology.dll</HintPath>
+    </Reference>
+    <Reference Include="gdal_csharp, Version=3.3.3.0, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\gdal_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="GeoCommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\GeoCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MathNet.Numerics.5.0.0\lib\net461\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="ogr_csharp, Version=3.3.3.0, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ogr_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
+      <HintPath>packages\OpenCvSharp4.4.6.0.20220608\lib\netstandard2.0\OpenCvSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="osr_csharp, Version=3.3.3.0, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\osr_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Triangle, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Triangle.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\BranchSection\BifucationWorker.cs" />
+    <Compile Include="BLL\Common\BaseLineTransformWorder2D.cs" />
+    <Compile Include="BLL\Common\BezierCurveMorphing.cs" />
+    <Compile Include="BLL\Common\IndexPairs.cs" />
+    <Compile Include="BLL\Common\InterShpReader.cs" />
+    <Compile Include="BLL\Common\MatchLayer.cs" />
+    <Compile Include="BLL\Common\MultiKeyDictionary.cs" />
+    <Compile Include="BLL\Common\Topology.cs" />
+    <Compile Include="BLL\Common\TopologyOfPoly.cs" />
+    <Compile Include="BLL\Common\UnionSet.cs" />
+    <Compile Include="BLL\InterpolationSection\EraseSharpen.cs" />
+    <Compile Include="BLL\MergeShrpenSection\MergeSectionWorker.cs" />
+    <Compile Include="BLL\Modeling\ArcPairsFactory.cs" />
+    <Compile Include="BLL\Modeling\BezierMorphingModel.cs" />
+    <Compile Include="BLL\Modeling\CoupleFinderWithTopology.cs" />
+    <Compile Include="BLL\Modeling\CreateBrepModelByXY.cs" />
+    <Compile Include="BLL\Modeling\MergeBreps.cs" />
+    <Compile Include="BLL\Modeling\SectionMergeByID.cs" />
+    <Compile Include="BLL\Modeling\SinglePolyWorker.cs" />
+    <Compile Include="BLL\MoedlLod2\SplitStrataToolbox.cs" />
+    <Compile Include="BLL\MoedlLod2\SplitStrataWorker.cs" />
+    <Compile Include="BLL\MoedlLod2\StrataAssignHelp.cs" />
+    <Compile Include="BLL\SectionTopology\DealTopoChange.cs" />
+    <Compile Include="BLL\SectionTopology\FindTopoChangeByMultiLine.cs" />
+    <Compile Include="BLL\SharpenProfile\CreateMissBufferGeater3.cs" />
+    <Compile Include="BLL\SurfaceDataFusion\CropGeomapBylines.cs" />
+    <Compile Include="BLL\SurfaceDataFusion\Surface3DFormer.cs" />
+    <Compile Include="BLL\SurfaceDataFusion\SurfacePointMatch.cs" />
+    <Compile Include="IO\CMDHandler.cs" />
+    <Compile Include="IO\ConvertArcs2DTo3DWholeShp.cs" />
+    <Compile Include="IO\ConvertArcs3DTo2DWholeShp.cs" />
+    <Compile Include="IO\ConvertArcsToPolygon.cs" />
+    <Compile Include="IO\ConvertLinesTo3D.cs" />
+    <Compile Include="IO\ConvertPointsTo3D.cs" />
+    <Compile Include="IO\CopyShp.cs" />
+    <Compile Include="IO\DemIO.cs" />
+    <Compile Include="IO\PolygonIO.cs" />
+    <Compile Include="IO\Read3Dpara.cs" />
+    <Compile Include="IO\readARCs.cs" />
+    <Compile Include="IO\ReadSHPPairs.cs" />
+    <Compile Include="IO\savePairLinesToshp.cs" />
+    <Compile Include="IO\shpReader.cs" />
+    <Compile Include="IO\StratumData.cs" />
+    <Compile Include="BLL\InterpolationSection\RemoveFineBorderlines.cs" />
+    <Compile Include="UI\CreateDecouplingSectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CreateDecouplingSectionForm.Designer.cs">
+      <DependentUpon>CreateDecouplingSectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\EageCrushForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EageCrushForm.Designer.cs">
+      <DependentUpon>EageCrushForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\EnvConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EnvConfigForm.Designer.cs">
+      <DependentUpon>EnvConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmMain.designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\InterpolationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\InterpolationForm.Designer.cs">
+      <DependentUpon>InterpolationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ModelBezierCurveForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ModelBezierCurveForm.Designer.cs">
+      <DependentUpon>ModelBezierCurveForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ModelQueueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ModelQueueForm.Designer.cs">
+      <DependentUpon>ModelQueueForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MultiSourceModelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MultiSourceModelForm.Designer.cs">
+      <DependentUpon>MultiSourceModelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SharpenProfilesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SharpenProfilesForm.Designer.cs">
+      <DependentUpon>SharpenProfilesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StrataBranchesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\StrataBranchesForm.Designer.cs">
+      <DependentUpon>StrataBranchesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TopoChangeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\TopoChangeForm.Designer.cs">
+      <DependentUpon>TopoChangeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Transe3DForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Transe3DForm.Designer.cs">
+      <DependentUpon>Transe3DForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WrapWorker.cs" />
+    <EmbeddedResource Include="UI\CreateDecouplingSectionForm.resx">
+      <DependentUpon>CreateDecouplingSectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\EageCrushForm.resx">
+      <DependentUpon>EageCrushForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\EnvConfigForm.resx">
+      <DependentUpon>EnvConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UI\InterpolationForm.resx">
+      <DependentUpon>InterpolationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ModelBezierCurveForm.resx">
+      <DependentUpon>ModelBezierCurveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ModelQueueForm.resx">
+      <DependentUpon>ModelQueueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MultiSourceModelForm.resx">
+      <DependentUpon>MultiSourceModelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SharpenProfilesForm.resx">
+      <DependentUpon>SharpenProfilesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StrataBranchesForm.resx">
+      <DependentUpon>StrataBranchesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\TopoChangeForm.resx">
+      <DependentUpon>TopoChangeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Transe3DForm.resx">
+      <DependentUpon>Transe3DForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="SolidModel\SolidModel.csproj">
+      <Project>{4cb02930-0d71-4a70-90d9-c26b2b964d0c}</Project>
+      <Name>SolidModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\bg-open-folder.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
