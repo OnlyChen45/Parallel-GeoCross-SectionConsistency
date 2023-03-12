@@ -49,16 +49,13 @@
             this.AttributeMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.CircleSelectMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.矩形ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.解耦插值剖面生成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.剖面一致化ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.分支地层一致ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.错动地层一致ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.尖灭地层一致ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.三维剖面生成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.三维模型构建ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.三维模型构建曲面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.数据转换ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.边界冲突处理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.插值剖面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SpatialToolStrip = new DotSpatial.Controls.SpatialToolStrip();
@@ -82,7 +79,6 @@
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.ArrtiBox = new System.Windows.Forms.DataGridView();
-            this.解耦插值剖面生成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -117,8 +113,6 @@
             this.剖面一致化ToolStripMenuItem,
             this.三维剖面生成ToolStripMenuItem,
             this.三维模型构建ToolStripMenuItem,
-            this.三维模型构建曲面ToolStripMenuItem,
-            this.数据转换ToolStripMenuItem1,
             this.配置ToolStripMenuItem,
             this.帮助ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -146,59 +140,59 @@
             // 新建NToolStripMenuItem
             // 
             this.新建NToolStripMenuItem.Name = "新建NToolStripMenuItem";
-            this.新建NToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.新建NToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.新建NToolStripMenuItem.Text = "New(N)";
             this.新建NToolStripMenuItem.Click += new System.EventHandler(this.NewFileMenu_Click);
             // 
             // 打开OToolStripMenuItem
             // 
             this.打开OToolStripMenuItem.Name = "打开OToolStripMenuItem";
-            this.打开OToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.打开OToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.打开OToolStripMenuItem.Text = "Open(O)";
             this.打开OToolStripMenuItem.Click += new System.EventHandler(this.OpenFileMenuItem_Click);
             // 
             // 保存SToolStripMenuItem
             // 
             this.保存SToolStripMenuItem.Name = "保存SToolStripMenuItem";
-            this.保存SToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.保存SToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.保存SToolStripMenuItem.Text = "Save(S)";
             this.保存SToolStripMenuItem.Click += new System.EventHandler(this.SaveFileMenuItem_Click);
             // 
             // 另存为AToolStripMenuItem
             // 
             this.另存为AToolStripMenuItem.Name = "另存为AToolStripMenuItem";
-            this.另存为AToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.另存为AToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.另存为AToolStripMenuItem.Text = "Save As(A)";
             this.另存为AToolStripMenuItem.Click += new System.EventHandler(this.SaveAsAnotherMenu_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(134, 6);
             // 
             // 导入IToolStripMenuItem
             // 
             this.导入IToolStripMenuItem.Name = "导入IToolStripMenuItem";
-            this.导入IToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.导入IToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.导入IToolStripMenuItem.Text = "Import(I)";
             this.导入IToolStripMenuItem.Click += new System.EventHandler(this.ImportFileMenuItem_Click);
             // 
             // 导出EToolStripMenuItem
             // 
             this.导出EToolStripMenuItem.Name = "导出EToolStripMenuItem";
-            this.导出EToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.导出EToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.导出EToolStripMenuItem.Text = "Export(E)";
             this.导出EToolStripMenuItem.Click += new System.EventHandler(this.ExportFileMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(134, 6);
             // 
             // 退出EToolStripMenuItem
             // 
             this.退出EToolStripMenuItem.Name = "退出EToolStripMenuItem";
-            this.退出EToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.退出EToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.退出EToolStripMenuItem.Text = "Exit(E)";
             this.退出EToolStripMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
@@ -218,7 +212,7 @@
             this.状态栏ToolStripMenuItem.Checked = true;
             this.状态栏ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.状态栏ToolStripMenuItem.Name = "状态栏ToolStripMenuItem";
-            this.状态栏ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.状态栏ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.状态栏ToolStripMenuItem.Text = "Statusbar";
             this.状态栏ToolStripMenuItem.Click += new System.EventHandler(this.StateMenu_Click);
             // 
@@ -227,7 +221,7 @@
             this.工具条ToolStripMenuItem.Checked = true;
             this.工具条ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.工具条ToolStripMenuItem.Name = "工具条ToolStripMenuItem";
-            this.工具条ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.工具条ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.工具条ToolStripMenuItem.Text = "Toolsbar";
             this.工具条ToolStripMenuItem.Click += new System.EventHandler(this.ToolbarMenu_Click);
             // 
@@ -236,7 +230,7 @@
             this.鹰眼ToolStripMenuItem.Checked = true;
             this.鹰眼ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.鹰眼ToolStripMenuItem.Name = "鹰眼ToolStripMenuItem";
-            this.鹰眼ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.鹰眼ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.鹰眼ToolStripMenuItem.Text = "Hawketye";
             this.鹰眼ToolStripMenuItem.Click += new System.EventHandler(this.HawkeyeMenu_Click);
             // 
@@ -245,7 +239,7 @@
             this.工作空间ToolStripMenuItem.Checked = true;
             this.工作空间ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.工作空间ToolStripMenuItem.Name = "工作空间ToolStripMenuItem";
-            this.工作空间ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.工作空间ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.工作空间ToolStripMenuItem.Text = "Workspace";
             this.工作空间ToolStripMenuItem.Click += new System.EventHandler(this.WorkSpaceMenu_Click);
             // 
@@ -279,6 +273,13 @@
             this.矩形ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.矩形ToolStripMenuItem.Text = "SelectByRect";
             this.矩形ToolStripMenuItem.Click += new System.EventHandler(this.RectangleSelectMenu_Click);
+            // 
+            // 解耦插值剖面生成ToolStripMenuItem
+            // 
+            this.解耦插值剖面生成ToolStripMenuItem.Name = "解耦插值剖面生成ToolStripMenuItem";
+            this.解耦插值剖面生成ToolStripMenuItem.Size = new System.Drawing.Size(137, 21);
+            this.解耦插值剖面生成ToolStripMenuItem.Text = "SectionInterpolation";
+            this.解耦插值剖面生成ToolStripMenuItem.Click += new System.EventHandler(this.解耦插值剖面生成ToolStripMenuItem_Click);
             // 
             // 剖面一致化ToolStripMenuItem
             // 
@@ -324,36 +325,6 @@
             this.三维模型构建ToolStripMenuItem.Size = new System.Drawing.Size(91, 21);
             this.三维模型构建ToolStripMenuItem.Text = "3Dmodeling";
             this.三维模型构建ToolStripMenuItem.Click += new System.EventHandler(this.三维模型构建ToolStripMenuItem_Click);
-            // 
-            // 三维模型构建曲面ToolStripMenuItem
-            // 
-            this.三维模型构建曲面ToolStripMenuItem.Name = "三维模型构建曲面ToolStripMenuItem";
-            this.三维模型构建曲面ToolStripMenuItem.Size = new System.Drawing.Size(135, 21);
-            this.三维模型构建曲面ToolStripMenuItem.Text = "3Dmodeling(bezire)";
-            this.三维模型构建曲面ToolStripMenuItem.Click += new System.EventHandler(this.三维模型构建曲面ToolStripMenuItem_Click);
-            // 
-            // 数据转换ToolStripMenuItem1
-            // 
-            this.数据转换ToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.边界冲突处理ToolStripMenuItem,
-            this.插值剖面ToolStripMenuItem});
-            this.数据转换ToolStripMenuItem1.Name = "数据转换ToolStripMenuItem1";
-            this.数据转换ToolStripMenuItem1.Size = new System.Drawing.Size(82, 21);
-            this.数据转换ToolStripMenuItem1.Text = "Othertools";
-            // 
-            // 边界冲突处理ToolStripMenuItem
-            // 
-            this.边界冲突处理ToolStripMenuItem.Name = "边界冲突处理ToolStripMenuItem";
-            this.边界冲突处理ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.边界冲突处理ToolStripMenuItem.Text = "边界冲突处理";
-            this.边界冲突处理ToolStripMenuItem.Click += new System.EventHandler(this.边界冲突处理ToolStripMenuItem_Click);
-            // 
-            // 插值剖面ToolStripMenuItem
-            // 
-            this.插值剖面ToolStripMenuItem.Name = "插值剖面ToolStripMenuItem";
-            this.插值剖面ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.插值剖面ToolStripMenuItem.Text = "插值剖面";
-            this.插值剖面ToolStripMenuItem.Click += new System.EventHandler(this.插值剖面ToolStripMenuItem_Click);
             // 
             // 配置ToolStripMenuItem
             // 
@@ -522,7 +493,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(360, 307);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "图层";
+            this.tabPage1.Text = "Layers";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabControl2
@@ -629,7 +600,7 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(1175, 645);
             this.tabPage3.TabIndex = 0;
-            this.tabPage3.Text = "主视图";
+            this.tabPage3.Text = "Main View";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // ArrtiBox
@@ -643,13 +614,6 @@
             this.ArrtiBox.Size = new System.Drawing.Size(1183, 255);
             this.ArrtiBox.TabIndex = 0;
             // 
-            // 解耦插值剖面生成ToolStripMenuItem
-            // 
-            this.解耦插值剖面生成ToolStripMenuItem.Name = "解耦插值剖面生成ToolStripMenuItem";
-            this.解耦插值剖面生成ToolStripMenuItem.Size = new System.Drawing.Size(137, 21);
-            this.解耦插值剖面生成ToolStripMenuItem.Text = "SectionInterpolation";
-            this.解耦插值剖面生成ToolStripMenuItem.Click += new System.EventHandler(this.解耦插值剖面生成ToolStripMenuItem_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -662,7 +626,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmMain";
-            this.Text = "平行地质剖面三维建模系统";
+            this.Text = "Parallel geological cross-section 3D modeling system";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -728,7 +692,6 @@
         private System.Windows.Forms.ToolStripMenuItem CircleSelectMenu;
         private System.Windows.Forms.ToolStripStatusLabel CoordX;
         private System.Windows.Forms.ToolStripStatusLabel CoordY;
-        private System.Windows.Forms.ToolStripMenuItem 数据转换ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 帮助ToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer3;
         public System.Windows.Forms.DataGridView ArrtiBox;
@@ -744,11 +707,8 @@
         private System.Windows.Forms.ToolStripMenuItem 三维剖面生成ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 三维模型构建ToolStripMenuItem;
         private System.Windows.Forms.TabPage ModelMessage;
-        private System.Windows.Forms.ToolStripMenuItem 边界冲突处理ToolStripMenuItem;
         public System.Windows.Forms.RichTextBox NotificationBox;
         private System.Windows.Forms.ToolStripMenuItem 配置ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 三维模型构建曲面ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 插值剖面ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 解耦插值剖面生成ToolStripMenuItem;
     }
 }

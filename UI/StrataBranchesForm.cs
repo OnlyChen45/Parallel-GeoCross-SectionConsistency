@@ -22,7 +22,11 @@ namespace DotSpatialForm.UI
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Initialize the auxiliary variable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StrataBranchesForm_Load(object sender, EventArgs e)
         {
             SectionPath.Items.AddRange(pathlist);
@@ -30,7 +34,11 @@ namespace DotSpatialForm.UI
             groupcount = 0;
 
         }
-
+        /// <summary>
+        /// Enter the shp data file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -42,17 +50,21 @@ namespace DotSpatialForm.UI
             }
 
         }
-
+        /// <summary>
+        /// Adds a data entry to the data group
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button6_Click(object sender, EventArgs e)
         {
-            if (pair == false) //如果成对标志为false，那么就不增加新的成对编号，
+            if (pair == false) //If the pair flag is false, then no new pair number is added, 
             {
                 int index = dataGridView1.Rows.Add();
                 dataGridView1.Rows[index].Cells[0].Value = groupcount;
                 dataGridView1.Rows[index].Cells[1].Value = SectionPath.Text;
                 pair = true;
             }
-            else//如果 
+            else
             {
                 groupcount++;
                 int index = dataGridView1.Rows.Add();
@@ -62,7 +74,11 @@ namespace DotSpatialForm.UI
             }
 
         }
-
+        /// <summary>
+        /// Remove data from a data table
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -96,7 +112,7 @@ namespace DotSpatialForm.UI
         private void button3_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folder = new FolderBrowserDialog();
-            folder.Description = "结果文件夹";  //定义在对话框上显示的文本
+            folder.Description = "Result Folder";  //Defines the text to display on the dialog box
 
             if (folder.ShowDialog() == DialogResult.OK)
             {
@@ -108,7 +124,8 @@ namespace DotSpatialForm.UI
         {
             this.Close();
         }
-        private List<string[]> getDataPair() {//把datagridview里所有组都读出来返回成一个列表
+        private List<string[]> getDataPair()
+        {//Read out all the groups in the datagridview and return them to a list
             int count = dataGridView1.Rows.Count-1;
             Dictionary<int, List<string>> pairs = new Dictionary<int, List<string>>();
             for (int i = 0; i < count; i++) {
@@ -150,14 +167,22 @@ namespace DotSpatialForm.UI
             }
             return workspacegdb;
         }
+        /// <summary>
+        /// Execute the algorithm logic for the corresponding section branch
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button5_Click(object sender, EventArgs e)
         {
             List<string[]> pairs = getDataPair();
 
             FrmMain frm = (FrmMain)this.Owner;
             string workspaceSS = ResultFolder.Text;//dir + "\\temp";
-            foreach (string[] pair in pairs)
+            string gdbpath = createGDB(workspaceSS);
+            //FrmMain frmt = (FrmMain)this.Owner;
+            foreach (string[] pair in pairs)//Iterate over the data in the data box
             {
+                //Get a set of data
                 string datapath1 = pair[0];
                 string datapath2 = pair[1];
                 string par1ori = get3Dpar(datapath1);
@@ -165,18 +190,18 @@ namespace DotSpatialForm.UI
                 string dir = Path.GetDirectoryName(pair[0]);
                 string name1 = Path.GetFileNameWithoutExtension(pair[0]);
                 string name2 = Path.GetFileNameWithoutExtension(pair[1]);
-
+                //Initialize the workspace
                 if (!Directory.Exists(workspaceSS))
                 {
                     Directory.CreateDirectory(workspaceSS);
                 }
-                // string workspace = workspace;
+
                 string filename1 = name1 + "_DoneBranch", filename2 = name2 + "_DoneBranch";
                 string fenzhiresultpath1, fenzhiresultpath2;
+                //The main logic of branching algorithms
+                WrapWorker.dealBranching(datapath1, datapath2, workspaceSS, filename1, filename2, out fenzhiresultpath1, out fenzhiresultpath2, frm.arcpypath, gdbpath, frm.idname);
 
-                WrapWorker.dealFenzhi(datapath1, datapath2, workspaceSS, filename1, filename2, out fenzhiresultpath1, out fenzhiresultpath2, frm.idname);
-                //SectionPath1.Text = fenzhiresultpath1;
-                /// SectionPath2.Text = fenzhiresultpath2;
+                //Copy the 3D parameter file that matches the shp file
                 frm.NotificationBox.AppendText(fenzhiresultpath1 + "\n");
                 frm.NotificationBox.AppendText(fenzhiresultpath2 + "\n\n");
                 string par1 = get3Dpar(fenzhiresultpath1);
@@ -194,8 +219,9 @@ namespace DotSpatialForm.UI
                 frm.addtoMap.Add(fenzhiresultpath1);
                 frm.addtoMap.Add(fenzhiresultpath2);
             }
-            frm.NotificationBox.AppendText("分支处理完成\n\n");
+            frm.NotificationBox.AppendText("Done\n\n");
             this.Close();
+
 
             string get3Dpar(string shppath)
             {

@@ -48,7 +48,7 @@ namespace DotSpatialForm.UI
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(93, 32);
             this.button2.TabIndex = 51;
-            this.button2.Text = "关闭";
+            this.button2.Text = "Close";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -59,7 +59,7 @@ namespace DotSpatialForm.UI
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(93, 32);
             this.button1.TabIndex = 50;
-            this.button1.Text = "完成";
+            this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -69,9 +69,9 @@ namespace DotSpatialForm.UI
             this.label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(12, 144);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 16);
+            this.label1.Size = new System.Drawing.Size(144, 16);
             this.label1.TabIndex = 49;
-            this.label1.Text = "数据加载模式";
+            this.label1.Text = "Data loading mode";
             // 
             // modeSt
             // 
@@ -91,9 +91,9 @@ namespace DotSpatialForm.UI
             this.label5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label5.Location = new System.Drawing.Point(12, 78);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 16);
+            this.label5.Size = new System.Drawing.Size(320, 16);
             this.label5.TabIndex = 47;
-            this.label5.Text = "地层标识字段名";
+            this.label5.Text = "The formation identifies the field name";
             // 
             // IdNameBox
             // 
@@ -109,9 +109,9 @@ namespace DotSpatialForm.UI
             this.label6.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label6.Location = new System.Drawing.Point(12, 9);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 16);
+            this.label6.Size = new System.Drawing.Size(88, 16);
             this.label6.TabIndex = 45;
-            this.label6.Text = "Arcpy路径";
+            this.label6.Text = "Arcpy Path";
             // 
             // arcpyPath1
             // 
@@ -152,7 +152,7 @@ namespace DotSpatialForm.UI
             this.MinimizeBox = false;
             this.Name = "EnvConfigForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "配置";
+            this.Text = "Config";
             this.Load += new System.EventHandler(this.EnvConfigForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

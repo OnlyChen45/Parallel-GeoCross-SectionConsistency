@@ -55,7 +55,7 @@ namespace DotSpatialForm.UI
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(93, 32);
             this.button4.TabIndex = 63;
-            this.button4.Text = "关闭";
+            this.button4.Text = "Cancel";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -66,7 +66,7 @@ namespace DotSpatialForm.UI
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(93, 32);
             this.button5.TabIndex = 62;
-            this.button5.Text = "执行";
+            this.button5.Text = "OK";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -76,9 +76,9 @@ namespace DotSpatialForm.UI
             this.label2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(27, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 16);
+            this.label2.Size = new System.Drawing.Size(152, 16);
             this.label2.TabIndex = 61;
-            this.label2.Text = "剖面数据";
+            this.label2.Text = "Cross-section Data";
             // 
             // label1
             // 
@@ -86,9 +86,9 @@ namespace DotSpatialForm.UI
             this.label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(30, 389);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 16);
+            this.label1.Size = new System.Drawing.Size(104, 16);
             this.label1.TabIndex = 60;
-            this.label1.Text = "结果文件夹";
+            this.label1.Text = "ResultFolder";
             // 
             // button3
             // 
@@ -169,11 +169,11 @@ namespace DotSpatialForm.UI
             this.AddToQueueCheckBox.Checked = true;
             this.AddToQueueCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.AddToQueueCheckBox.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.AddToQueueCheckBox.Location = new System.Drawing.Point(506, 451);
+            this.AddToQueueCheckBox.Location = new System.Drawing.Point(417, 451);
             this.AddToQueueCheckBox.Name = "AddToQueueCheckBox";
-            this.AddToQueueCheckBox.Size = new System.Drawing.Size(123, 20);
+            this.AddToQueueCheckBox.Size = new System.Drawing.Size(211, 20);
             this.AddToQueueCheckBox.TabIndex = 64;
-            this.AddToQueueCheckBox.Text = "加入建模队列";
+            this.AddToQueueCheckBox.Text = "Join the modeling queue";
             this.AddToQueueCheckBox.UseVisualStyleBackColor = true;
             // 
             // button6
@@ -191,11 +191,11 @@ namespace DotSpatialForm.UI
             // 
             this.BeziershpCheck.AutoSize = true;
             this.BeziershpCheck.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BeziershpCheck.Location = new System.Drawing.Point(345, 451);
+            this.BeziershpCheck.Location = new System.Drawing.Point(108, 451);
             this.BeziershpCheck.Name = "BeziershpCheck";
-            this.BeziershpCheck.Size = new System.Drawing.Size(155, 20);
+            this.BeziershpCheck.Size = new System.Drawing.Size(299, 20);
             this.BeziershpCheck.TabIndex = 66;
-            this.BeziershpCheck.Text = "生成曲线参数模板";
+            this.BeziershpCheck.Text = "Generate curve parameter templates";
             this.BeziershpCheck.UseVisualStyleBackColor = true;
             // 
             // Transe3DForm
@@ -221,7 +221,7 @@ namespace DotSpatialForm.UI
             this.MinimizeBox = false;
             this.Name = "Transe3DForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "三维剖面构建";
+            this.Text = "Trans2DTo3D";
             this.Load += new System.EventHandler(this.Transe3DForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

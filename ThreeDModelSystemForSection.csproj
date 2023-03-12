@@ -92,6 +92,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\osr_csharp.dll</HintPath>
     </Reference>
+    <Reference Include="SolidModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\SolidModel.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -128,6 +132,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\BranchSection\BifucationWorker.cs" />
+    <Compile Include="BLL\BranchSection\FindMatchRingDFSWorker.cs" />
+    <Compile Include="BLL\BranchSection\LocateBranchCounterpart.cs" />
+    <Compile Include="BLL\BranchSection\MinOutsourceRect.cs" />
+    <Compile Include="BLL\BranchSection\shpReaderForBifucation.cs" />
     <Compile Include="BLL\Common\BaseLineTransformWorder2D.cs" />
     <Compile Include="BLL\Common\BezierCurveMorphing.cs" />
     <Compile Include="BLL\Common\IndexPairs.cs" />
@@ -177,12 +185,6 @@
     <Compile Include="UI\CreateDecouplingSectionForm.Designer.cs">
       <DependentUpon>CreateDecouplingSectionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\EageCrushForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\EageCrushForm.Designer.cs">
-      <DependentUpon>EageCrushForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\EnvConfigForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,23 +205,11 @@
     <Compile Include="UI\InterpolationForm.Designer.cs">
       <DependentUpon>InterpolationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ModelBezierCurveForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\ModelBezierCurveForm.Designer.cs">
-      <DependentUpon>ModelBezierCurveForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\ModelQueueForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\ModelQueueForm.Designer.cs">
       <DependentUpon>ModelQueueForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\MultiSourceModelForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\MultiSourceModelForm.Designer.cs">
-      <DependentUpon>MultiSourceModelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\SharpenProfilesForm.cs">
       <SubType>Form</SubType>
@@ -249,9 +239,6 @@
     <EmbeddedResource Include="UI\CreateDecouplingSectionForm.resx">
       <DependentUpon>CreateDecouplingSectionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\EageCrushForm.resx">
-      <DependentUpon>EageCrushForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\EnvConfigForm.resx">
       <DependentUpon>EnvConfigForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -271,14 +258,8 @@
     <EmbeddedResource Include="UI\InterpolationForm.resx">
       <DependentUpon>InterpolationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\ModelBezierCurveForm.resx">
-      <DependentUpon>ModelBezierCurveForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\ModelQueueForm.resx">
       <DependentUpon>ModelQueueForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\MultiSourceModelForm.resx">
-      <DependentUpon>MultiSourceModelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\SharpenProfilesForm.resx">
       <DependentUpon>SharpenProfilesForm.cs</DependentUpon>
@@ -308,12 +289,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="SolidModel\SolidModel.csproj">
-      <Project>{4cb02930-0d71-4a70-90d9-c26b2b964d0c}</Project>
-      <Name>SolidModel</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\bg-open-folder.png" />

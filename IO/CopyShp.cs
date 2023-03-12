@@ -19,9 +19,7 @@ namespace ThreeDModelSystemForSection
         public CopyShp(string orishp,string outputshp,int layerindex=0,wkbGeometryType geomtype=wkbGeometryType.wkbNone) {
             Gdal.AllRegister();
             Ogr.RegisterAll();
-            // 为了支持中文路径，请添加下面这句代码
             OSGeo.GDAL.Gdal.SetConfigOption("GDAL_FILENAME_IS_UTF8", "YES");
-            // 为了使属性表字段支持中文，请添加下面这句
             OSGeo.GDAL.Gdal.SetConfigOption("SHAPE_ENCODING", "CP936");
             this.orishppath = orishp;
             this.outputshppath = outputshp;

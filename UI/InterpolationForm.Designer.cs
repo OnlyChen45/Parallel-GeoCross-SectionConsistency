@@ -54,7 +54,7 @@ namespace DotSpatialForm.UI
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(93, 32);
             this.button3.TabIndex = 52;
-            this.button3.Text = "关闭";
+            this.button3.Text = "Cencel";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -65,7 +65,7 @@ namespace DotSpatialForm.UI
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(97, 32);
             this.button4.TabIndex = 51;
-            this.button4.Text = "建模并插值";
+            this.button4.Text = "OK";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -84,11 +84,11 @@ namespace DotSpatialForm.UI
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(197, 417);
+            this.label2.Location = new System.Drawing.Point(254, 417);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 16);
+            this.label2.Size = new System.Drawing.Size(104, 16);
             this.label2.TabIndex = 49;
-            this.label2.Text = "结果文件夹";
+            this.label2.Text = "ResultFolder";
             // 
             // ResultFolder
             // 
@@ -154,9 +154,9 @@ namespace DotSpatialForm.UI
             this.label3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label3.Location = new System.Drawing.Point(12, 417);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(128, 16);
+            this.label3.Size = new System.Drawing.Size(232, 16);
             this.label3.TabIndex = 53;
-            this.label3.Text = "插值步长（0~1）";
+            this.label3.Text = "Interpolate step size（0~1）";
             // 
             // InterpolationStep
             // 
@@ -172,9 +172,9 @@ namespace DotSpatialForm.UI
             this.TransTo2dOrNor.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TransTo2dOrNor.Location = new System.Drawing.Point(15, 492);
             this.TransTo2dOrNor.Name = "TransTo2dOrNor";
-            this.TransTo2dOrNor.Size = new System.Drawing.Size(131, 20);
+            this.TransTo2dOrNor.Size = new System.Drawing.Size(235, 20);
             this.TransTo2dOrNor.TabIndex = 55;
-            this.TransTo2dOrNor.Text = "生成2维剖面图";
+            this.TransTo2dOrNor.Text = "Generate 2D Cross-sections";
             this.TransTo2dOrNor.UseVisualStyleBackColor = true;
             // 
             // InterpolationForm
@@ -197,7 +197,7 @@ namespace DotSpatialForm.UI
             this.MinimizeBox = false;
             this.Name = "InterpolationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "剖面插值";
+            this.Text = "Section interpolation";
             this.Load += new System.EventHandler(this.InterpolationForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

@@ -74,7 +74,7 @@ namespace ThreeDModelSystemForSection
             }
             return result.ToArray();
         }
-        static public void dealTopoChange(string path1, string path2, string workspace, out string resultpath1, out string resultpath2, string idFieldName,string name1,string name2, double bufferdis = 1,string idname="LithCode")
+        static public void dealTopoChange(string path1, string path2, string workspace, out string resultpath1, out string resultpath2, string idFieldName,string name1,string name2,string gdbstring, string pypath, double bufferdis = 1,string idname="LithCode")
         {
             resultpath1 = WrapWorker.getnewFileName(workspace, name1, "shp");
             resultpath2 = WrapWorker.getnewFileName(workspace, name2, "shp");
@@ -82,7 +82,10 @@ namespace ThreeDModelSystemForSection
             //string midresult2 = WrapWorker.getnewFileName(workspace, "2NoSharpen", "shp");
             string midresult1, midresult2;
             WrapWorker.earseSharpenSection(path1, path2, "1NoSharpen", "2NoSharpen", workspace, idname, out midresult1, out midresult2);
-          // makeNosharpenData(path1, path2, midresult1, midresult2, idFieldName);
+            //string gdbstring = createTempGDB(workspace);
+            // makeNosharpenData(path1, path2, midresult1, midresult2, idFieldName);
+            midresult1 = WrapWorker.polyNormalization(midresult1, workspace, gdbstring, pypath, "1NoSharpenNor", idFieldName);
+            midresult2 = WrapWorker.polyNormalization(midresult2, workspace, gdbstring, pypath, "2NoSharpenNor", idFieldName);
             DealTopoChange.dealTopoChange(midresult1, midresult2, idFieldName, workspace, resultpath1, resultpath2, path1, path2, bufferdis);
         }
         static public void dealTopoChange(string path1, string path2, string workspace, out string resultpath1, out string resultpath2, string idFieldName, string name1, string name2, out string bufferpath1,out string bufferpath2,double bufferdis = 1)
@@ -95,7 +98,7 @@ namespace ThreeDModelSystemForSection
             DealTopoChange.dealTopoChange(midresult1, midresult2, idFieldName, workspace, resultpath1, resultpath2, path1, path2, bufferdis,out bufferpath1,out bufferpath2);
         }
         /// <summary>
-        /// 制作没有尖灭地层的数据，便于后续处理拓扑关系变化
+        /// Make data without pinch-out strata, so as to facilitate subsequent processing of topological relationship changes 
         /// </summary>
         /// <param name="path1"></param>
         /// <param name="path2"></param>
@@ -161,185 +164,208 @@ namespace ThreeDModelSystemForSection
                 return result;
             }
         }
-        static public void dealFenzhi(string path1, string path2, string workspace, string filename1,string filename2, out string resultpath1, out string resultpath2, string FieldName = "LithCode")
+        public static double[] getmaxminxy(List<Geometry> polys)
         {
-            SpatialReference spatialReference;
-            Dictionary<int, Geometry> geomlistfids1 = shpReader.getGeomListByFileWithFID(path1, out spatialReference);
-            Dictionary<int, Geometry> geomlistfids2 = shpReader.getGeomListByFileWithFID(path2, out spatialReference);
-            string[] usefulattriname = { "FID1", "FID2", "NewID1", "NewID2", "shpID", "shpID1", "shpID2" };
-            attrireader attrireader1 = new attrireader(path1);
-            attrireader attrireader2 = new attrireader(path2);
-            Dictionary<string, Dictionary<int, int>> attritable1 = new Dictionary<string, Dictionary<int, int>>();
-            Dictionary<string, Dictionary<int, int>> attritable2 = new Dictionary<string, Dictionary<int, int>>();
-            //把所有的数据都提取出来。
-            foreach (string namet in usefulattriname)
+            double maxx = double.MinValue;
+            double minx = double.MaxValue;
+            double maxy = double.MinValue;
+            double miny = double.MaxValue;
+            foreach (Geometry poly in polys)
             {
-                Dictionary<int, int> attrilist1 = attrireader1.getattrilistByName(namet);
-                Dictionary<int, int> attrilist2 = attrireader2.getattrilistByName(namet);
-                attritable1.Add(namet, attrilist1);
-                attritable2.Add(namet, attrilist2);
+                Geometry boundary = poly.GetBoundary();
+                int pointcount = boundary.GetPointCount();
+                for (int i = 0; i < pointcount; i++)
+                {
+                    double x = boundary.GetX(i);
+                    double y = boundary.GetY(i);
+                    if (maxx < x) maxx = x;
+                    if (minx > x) minx = x;
+                    if (maxy < y) maxy = y;
+                    if (miny > y) miny = y;
+                }
             }
-            Dictionary<int, int> fid1_LithCode = attrireader1.getattrilistByName(FieldName);//获取fid与LithCode
-            Dictionary<int, int> fid2_LithCode = attrireader2.getattrilistByName(FieldName);
-            attrireader1.layerdispose();
-            attrireader2.layerdispose();
-            //下面来判断一下用哪个数据来做内容
-            Dictionary<int, int> FID1 = new Dictionary<int, int>(), FID2 = new Dictionary<int, int>(),
-                NewID1 = new Dictionary<int, int>(), NewID2 = new Dictionary<int, int>();
-            int shpid1 = attritable1["shpID"][0];
-            int shpid2 = attritable2["shpID"][0];
-            int shpid11 = attritable1["shpID1"][0];
-            int shpid12 = attritable1["shpID2"][0];
-            int shpid21 = attritable2["shpID1"][0];
-            int shpid22 = attritable2["shpID2"][0];
-            if (shpid2 == shpid11)
-            {
-                FID1 = attritable1["FID1"];
-                NewID1 = attritable1["NewID1"];
-            }
-            else if (shpid2 == shpid12)
-            {
-                FID1 = attritable1["FID2"];
-                NewID1 = attritable1["NewID2"];
-            }
-            if (shpid1 == shpid21)
-            {
-                FID2 = attritable2["FID1"];
-                NewID2 = attritable2["NewID1"];
-            }
-            else if (shpid1 == shpid22)
-            {
-                FID2 = attritable2["FID2"];
-                NewID2 = attritable2["NewID2"];
-            }
-            //以上就读好了所有的需要的ID数据了。
-            //FID1，是path1中的元素FID作为主键，其他作为连接到path2中
-            //FID2，是path2中的元素FID作为主键，其他作为连接到path1中
-            //NewID1，NewID2实际上就是，就是从1 或者2出发向另一个path来对应的面需要获得的新的ID
+            double[] result = { maxx, minx, maxy, miny };
+            return result;
+        }
+        /// <summary>
+        /// The main logic of branching algorithms
+        /// </summary>
+        /// <param name="path1">path of data1</param>
+        /// <param name="path2">path of data2</param>
+        /// <param name="workspace"></param>
+        /// <param name="filename1">result name 1</param>
+        /// <param name="filename2">result name 2</param>
+        /// <param name="resultpath1">result1</param>
+        /// <param name="resultpath2">result2</param>
+        /// <param name="arcpypath">enviroment of ArcPy</param>
+        /// <param name="gdbpath">path of  geodatabase</param>
+        /// <param name="FieldName">Name of Attribute of id</param>
+        static public void dealBranching(string path1, string path2, string workspace, string filename1, string filename2, out string resultpath1, out string resultpath2, string arcpypath, string gdbpath, string FieldName = "LithCode")
+        {
+            Dictionary<int, List<int>> section1Pair, section2Pair;
+            List<int> singlepoly;
+            Dictionary<int, Geometry> sectionRenumber1, sectionRenumber2;
+            SpatialReference spatialReference1, spatialReference2;
+            Dictionary<int, List<Geometry>> section1ori = BifucationWorker.loadShp(path1, FieldName, out spatialReference1);
+            Dictionary<int, List<Geometry>> section2ori = BifucationWorker.loadShp(path2, FieldName, out spatialReference2);
+            BifucationWorker.spatialReference1 = spatialReference1;
             Dictionary<int, Geometry> resultsection1 = new Dictionary<int, Geometry>();
             Dictionary<int, Geometry> resultsection2 = new Dictionary<int, Geometry>();
-            //这个resultsection是用来装最终结果的
-            Dictionary<int, List<int>> splitqueue1 = new Dictionary<int, List<int>>();
-            Dictionary<int, List<int>> splitqueue2 = new Dictionary<int, List<int>>();
-            List<int> normalfid1 = new List<int>(), normalfid2 = new List<int>();
-            List<int> sharpen1 = new List<int>();
-            List<int> sharpen2 = new List<int>();
-            foreach (var vk in FID2)
+
+            //Automatically locate the m:n match result
+            LocateBranchCounterpart.LocateCounterpart(section1ori, section2ori, spatialReference1, out section1Pair, out section2Pair, out sectionRenumber1, out sectionRenumber2, out singlepoly);
+            double[] maxminxy1 = getmaxminxy(sectionRenumber1.Values.ToList<Geometry>());
+            double[] maxminxy2 = getmaxminxy(sectionRenumber2.Values.ToList<Geometry>());
+            foreach (var vk in section1Pair)
             {
                 int id = vk.Key;
-                int fid1 = vk.Value;
-                if (fid1 == -2)
+                List<int> pairidlist = vk.Value;
+                int paircount = pairidlist.Count;
+                if (paircount == 1 || paircount == 0)
                 {
-                    normalfid2.Add(id);
-                    continue;
-                }//正常一一对应不需处理
-                if (fid1 == -1)
-                { //从2到1 尖灭，存入2尖灭列表
-                    sharpen2.Add(id);
-                    continue;
-                }
-                bool t = splitqueue1.ContainsKey(fid1);//余下的就是，2多对1中一
-                if (t == false)
-                {
-                    List<int> templist = new List<int>();
-                    templist.Add(id);
-                    splitqueue1.Add(fid1, templist);
+                    resultsection1.Add(id, sectionRenumber1[id]);
+                    if (paircount == 1)
+                    {
+                        resultsection2.Add(pairidlist[0], sectionRenumber2[pairidlist[0]]);
+                    }
                 }
                 else
                 {
-                    splitqueue1[fid1].Add(id);
+                    //This is the one to many that needs to be split
+                    List<Geometry> geometries = new List<Geometry>();
+                    for (int i = 0; i < pairidlist.Count; i++)
+                    {
+                        geometries.Add(sectionRenumber2[pairidlist[i]]);
+                    }
+                    Geometry geom = sectionRenumber1[id];
+                    //Dictionary<int,Geometry>splitresult= BifucationWorker.dealOnePairPlural(geom, geometries);
+                    Dictionary<int, Geometry> splitresult = BifucationWorker.dealOnePairPlural(geom, geometries, maxminxy1);
+                    splitresult = fixgeoms(geom, splitresult);
+                    foreach (var vk2 in splitresult)
+                    {
+                        resultsection1.Add(id * 100 + vk2.Key, vk2.Value);
+                        resultsection2.Add(id * 100 + vk2.Key, geometries[vk2.Key]);
+                    }
                 }
             }
-            foreach (var vk in FID1)
+            foreach (var vk in section2Pair)
             {
                 int id = vk.Key;
-                int fid2 = vk.Value;
-                if (fid2 == -2)
+                List<int> pairidlist = vk.Value;
+                int paircount = pairidlist.Count;
+                if (paircount == 1 || paircount == 0)
                 {
-                    normalfid1.Add(id);
-                    continue;
-                }//正常一一对应不需处理
-                if (fid2 == -1)
-                { //从1到2 尖灭，存入1尖灭列表
-                    sharpen1.Add(id);
-                    continue;
-                }
-                bool t = splitqueue2.ContainsKey(fid2);//余下的就是，1多对2中一
-                if (t == false)
-                {
-                    List<int> templist = new List<int>();
-                    templist.Add(id);
-                    splitqueue2.Add(fid2, templist);
+                    resultsection2.Add(id, sectionRenumber2[id]);
+                    if (paircount == 1)
+                    {
+                        resultsection1.Add(pairidlist[0], sectionRenumber1[pairidlist[0]]);
+                    }
                 }
                 else
                 {
-                    splitqueue2[fid2].Add(id);
+                    //此处就是需要剖分的一对多
+                    List<Geometry> geometries = new List<Geometry>();
+                    for (int i = 0; i < pairidlist.Count; i++)
+                    {
+                        geometries.Add(sectionRenumber1[pairidlist[i]]);
+                    }
+                    Geometry geom = sectionRenumber2[id];
+                    Dictionary<int, Geometry> splitresult = BifucationWorker.dealOnePairPlural(geom, geometries);
+                    splitresult = fixgeoms(geom, splitresult);
+                    foreach (var vk2 in splitresult)
+                    {
+                        resultsection2.Add(id * 100 + vk2.Key, vk2.Value);
+                        resultsection1.Add(id * 100 + vk2.Key, geometries[vk2.Key]);
+                    }
+                    //这部分应该去比较一下两个这个被切分的面，以及切分的面，补全被矩形框到外边的部分。
+
                 }
             }
-            //下面就是要分别处理两个面中间的这个分支问题和尖灭问题了。
-            //其实具体办法也很简单，就是尖灭的按照新ID给处理了，然后分支的按照新ID做成新Dic处理。
-            //主要就是要把resultsection1 和resultsection2 给做完整了，就对了。
-            //先加普通面
-            for (int i = 0; i < normalfid1.Count; i++)
+            for (int i = 0; i < singlepoly.Count; i++)
             {
-                int norfid = normalfid1[i];
-                resultsection1.Add(fid1_LithCode[norfid], geomlistfids1[norfid]);
+                int id = singlepoly[i];
+                if (sectionRenumber1.ContainsKey(id))
+                    resultsection1.Add(id, sectionRenumber1[id]);
+                if (sectionRenumber2.ContainsKey(id))
+                    resultsection2.Add(id, sectionRenumber2[id]);
             }
-            for (int i = 0; i < normalfid2.Count; i++)
-            {
-                int norfid = normalfid2[i];
-                resultsection2.Add(fid2_LithCode[norfid], geomlistfids2[norfid]);
-            }
-            //再加尖灭面
-            for (int i = 0; i < sharpen1.Count; i++)
-            {
-                int sid = sharpen1[i];
-                int sharpennewid = NewID1[sid];
-                resultsection1.Add(sharpennewid, geomlistfids1[sid]);
-            }
-            for (int i = 0; i < sharpen2.Count; i++)
-            {
-                int sid = sharpen2[i];
-                int sharpennewid = NewID2[sid];
-                resultsection2.Add(sharpennewid, geomlistfids2[sid]);
-            }
-            //最后处理分支面
-            foreach (var vk in splitqueue1)
-            {
-                int fid1 = vk.Key;
-                List<int> fid2s = vk.Value;
-                Dictionary<int, Geometry> newidWithGeom = new Dictionary<int, Geometry>();
-                for (int j = 0; j < fid2s.Count; j++)
-                {
-                    int fid2 = fid2s[j];
-                    newidWithGeom.Add(NewID2[fid2], geomlistfids2[fid2]);
-                }
-                Dictionary<int, Geometry> fenzhijieguo1 = BifucationWorker.dealOnePairPluralnewVersion(geomlistfids1[fid1], newidWithGeom);
-                foreach (var vk2 in fenzhijieguo1)
-                {
-                    resultsection1.Add(vk2.Key, vk2.Value);
-                }
-            }
-            foreach (var vk in splitqueue2)
-            {
-                int fid2 = vk.Key;
-                List<int> fid1s = vk.Value;
-                Dictionary<int, Geometry> newidWithGeom = new Dictionary<int, Geometry>();
-                for (int j = 0; j < fid1s.Count; j++)
-                {
-                    int fid1 = fid1s[j];
-                    newidWithGeom.Add(NewID1[fid1], geomlistfids1[fid1]);
-                }
-                Dictionary<int, Geometry> fenzhijieguo2 = BifucationWorker.dealOnePairPluralnewVersion(geomlistfids1[fid2], newidWithGeom);
-                foreach (var vk2 in fenzhijieguo2)
-                {
-                    resultsection2.Add(vk2.Key, vk2.Value);
-                }
-            }
+
+            //savePolys(resultsection1path, idFieldName, resultsection1, spatialReference1);
+            //savePolys(resultsection2path, idFieldName, resultsection2, spatialReference1);
             resultpath1 = WrapWorker.getnewFileName(workspace, filename1, "shp");
             resultpath2 = WrapWorker.getnewFileName(workspace, filename2, "shp");
-            shpReader.saveDicOfGeoms(resultpath1, resultsection1, FieldName, spatialReference);
-            shpReader.saveDicOfGeoms(resultpath2, resultsection2, FieldName, spatialReference);
+            shpReader.saveDicOfGeoms(resultpath1, resultsection1, FieldName, spatialReference1);
+            shpReader.saveDicOfGeoms(resultpath2, resultsection2, FieldName, spatialReference2);
+            resultpath1 = WrapWorker.polyNormalization(resultpath1, workspace, gdbpath, arcpypath, filename1 + "Nor_OneToOne", FieldName);
+            resultpath2 = WrapWorker.polyNormalization(resultpath2, workspace, gdbpath, arcpypath, filename2 + "Nor_OneToOne", FieldName);
+            Dictionary<int, Geometry> fixgeoms(Geometry orionegeom, Dictionary<int, Geometry> geomssplited)
+            {
+                Geometry uniongeom = new Geometry(wkbGeometryType.wkbPolygon);
+                foreach (var vk in geomssplited)
+                {
+                    uniongeom = uniongeom.Union(vk.Value);
+                }
+                Dictionary<int, Geometry> result = new Dictionary<int, Geometry>();
+                foreach (var vk in geomssplited)
+                {
+                    result.Add(vk.Key, vk.Value);
+                }
+                //Geometry ge = uniongeom.Difference(orionegeom);
+                Geometry ge = orionegeom.Difference(uniongeom);
+                string wkt1;
+                ge.ExportToWkt(out wkt1);
+                wkbGeometryType geometryType1 = ge.GetGeometryType();
+                if (geometryType1 == wkbGeometryType.wkbMultiPolygon)
+                {
+                    int countt = ge.GetGeometryCount();
+                    for (int i = 0; i < countt; i++)
+                    {
+                        Geometry gett = ge.GetGeometryRef(i);
+                        //for(int j=0;j<result.Count;j++ )
+                        foreach (var vk in result)
+                        {
+                            Geometry geometrytemp = result[vk.Key];
+                            if (geometrytemp.Intersect(gett))
+                            {
+                                wkbGeometryType getypettt = geometrytemp.Intersection(gett).GetGeometryType();
+                                wkbGeometryType type222 = gett.GetGeometryType();
+                                if ((getypettt == wkbGeometryType.wkbLineString || getypettt == wkbGeometryType.wkbMultiLineString) && type222 == wkbGeometryType.wkbPolygon)
+                                {
+                                    //这里有问题，inter出来的结果可能是一条线
+                                    string wkt;
+                                    gett.ExportToWkt(out wkt);
+                                    result[vk.Key] = result[vk.Key].Union(gett);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (geometryType1 == wkbGeometryType.wkbPolygon)
+                {
+                    Geometry gett = ge;
+                    //for (int j = 0; j < result.Count; j++)
+                    foreach (var vk in result)
+                    {
+                        Geometry geometrytemp = result[vk.Key];
+                        if (geometrytemp.Intersect(gett))
+                        {
+                            wkbGeometryType getypettt = geometrytemp.Intersection(gett).GetGeometryType();
+                            wkbGeometryType type222 = gett.GetGeometryType();
+                            //if (getypettt == wkbGeometryType.wkbLineString || getypettt == wkbGeometryType.wkbMultiLineString)
+                            if ((getypettt == wkbGeometryType.wkbLineString || getypettt == wkbGeometryType.wkbMultiLineString) && type222 == wkbGeometryType.wkbPolygon)
+                            {
+                                string wkt;
+                                gett.ExportToWkt(out wkt);
+                                result[vk.Key] = result[vk.Key].Union(gett);
+
+                                break;
+                            }
+                        }
+                    }
+                }
+                return result;
+            }
         }
         static public void getSplitpathPair(ref Dictionary<int, string[]> splitpathpair, string[] files)
         {
@@ -377,11 +403,15 @@ namespace ThreeDModelSystemForSection
         }
         static public Dictionary<int, BrepModel> ModelLod2(string path1, string path2, string idFieldname, string workspace, string gdbpath, string pypath)
         {
-            //用两个路径去建模。
-            //第一步应该是把两个面应该创建的缺失地层建好
-            //第二步应该是看一看有几个面，如果是一对一，就不用拓扑建模了
-            //第三步，应该是把两个面给还原成三维的
-            //第四步，建模。
+            // Use two paths to model.  
+
+            // The first step should be to build the missing strata that the two surfaces should create  
+
+            // The second step should be to look at how many facets there are. If it is one-to-one, topology modeling is unnecessary  
+
+            // The third step should be to restore the two faces to three dimensions  
+
+            // Step 4, model. 
             Dictionary<int, Geometry> geoms1 = shpReader.getGeomListByFile(path1, idFieldname);
             Dictionary<int, Geometry> geoms2 = shpReader.getGeomListByFile(path2, idFieldname);
             Dictionary<int, BrepModel> result = new Dictionary<int, BrepModel>();

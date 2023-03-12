@@ -206,7 +206,7 @@ namespace DotSpatialForm.UI
                                 this.section2pair = sectionpairtxt2;
                                 this.sharpenorder1 = sharpenids1txt;
                                 this.sharpenorder2 = sharpenids2txt;*/
-                frm.NotificationBox.AppendText("复杂尖灭情况已经排除\n\n");
+                frm.NotificationBox.AppendText("Complex pinch-out has been ruled out\n\n");
                 string section1path = mergeresult1;
                 string section2path = mergeresult2;
                 string resultpath1;
@@ -222,7 +222,7 @@ namespace DotSpatialForm.UI
 
                 string par1 = get3Dpar(resultpath1);
                 string par2 = get3Dpar(resultpath2);
-                if (File.Exists(par1ori) && File.Exists(par2ori))//判断一下参数是否存在，不存在的时候就跳过省的报错
+                if (File.Exists(par1ori) && File.Exists(par2ori))//Determine whether the parameter exists. If it does not exist, skip the error 
 
                 {
                     FileStream fileStream1 = new FileStream(par1ori, FileMode.Open);
@@ -239,7 +239,7 @@ namespace DotSpatialForm.UI
                 frm.addtoMap.Add(resultpath1);
                 frm.addtoMap.Add(resultpath2);
             }
-            frm.NotificationBox.AppendText("尖灭地层处理完成\n\n");
+            frm.NotificationBox.AppendText("The pinch-out formation treatment is complete\n\n");
             this.Close();
         }
         string get3Dpar(string shppath)

@@ -917,6 +917,11 @@ namespace ThreeDModelSystemForSection
             }
         }
         public List<string> addtoMap;
+        /// <summary>
+        /// Tools that automatically identify and process m-to-n strata
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void 分支地层一致ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StrataBranchesForm branchesForm = new StrataBranchesForm();
@@ -924,7 +929,11 @@ namespace ThreeDModelSystemForSection
             branchesForm.ShowDialog(this);
             addResultToMap();
         }
-
+        /// <summary>
+        /// Automatic processing of no-corresponding arcs
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void 错动地层一致ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TopoChangeForm topoChangeForm = new TopoChangeForm();
@@ -932,7 +941,11 @@ namespace ThreeDModelSystemForSection
             topoChangeForm.ShowDialog(this);
             addResultToMap();
         }
-
+        /// <summary>
+        /// Tools to automatically identify and deal with pinch-out strata
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void 尖灭地层一致ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SharpenProfilesForm sharpenProfilesForm = new SharpenProfilesForm();
@@ -1014,12 +1027,7 @@ namespace ThreeDModelSystemForSection
             addResultToMap();
         }
 
-        private void 三维模型构建曲面ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ModelBezierCurveForm modelBezierCurveForm = new ModelBezierCurveForm();
-            modelBezierCurveForm.pathlist = getlayersFilePath();
-            modelBezierCurveForm.ShowDialog(this);
-        }
+
 
         private void 插值剖面ToolStripMenuItem_Click(object sender, EventArgs e)
         {

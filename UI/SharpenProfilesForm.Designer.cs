@@ -38,11 +38,11 @@ namespace DotSpatialForm.UI
             this.ResultFolder = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DataPair = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SectionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SectionPath = new System.Windows.Forms.ComboBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.DataPair = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SectionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +53,7 @@ namespace DotSpatialForm.UI
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(93, 32);
             this.button4.TabIndex = 73;
-            this.button4.Text = "关闭";
+            this.button4.Text = "Concel";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -64,7 +64,7 @@ namespace DotSpatialForm.UI
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(93, 32);
             this.button5.TabIndex = 72;
-            this.button5.Text = "执行";
+            this.button5.Text = "OK";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -74,9 +74,9 @@ namespace DotSpatialForm.UI
             this.label2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(27, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 16);
+            this.label2.Size = new System.Drawing.Size(152, 16);
             this.label2.TabIndex = 71;
-            this.label2.Text = "剖面数据";
+            this.label2.Text = "Cross-section Data";
             // 
             // label1
             // 
@@ -84,9 +84,9 @@ namespace DotSpatialForm.UI
             this.label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(30, 389);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 16);
+            this.label1.Size = new System.Drawing.Size(104, 16);
             this.label1.TabIndex = 70;
-            this.label1.Text = "结果文件夹";
+            this.label1.Text = "ResultFolder";
             // 
             // button3
             // 
@@ -130,6 +130,17 @@ namespace DotSpatialForm.UI
             this.dataGridView1.Size = new System.Drawing.Size(807, 306);
             this.dataGridView1.TabIndex = 65;
             // 
+            // DataPair
+            // 
+            this.DataPair.HeaderText = "Group";
+            this.DataPair.Name = "DataPair";
+            // 
+            // SectionName
+            // 
+            this.SectionName.HeaderText = "SectionName";
+            this.SectionName.Name = "SectionName";
+            this.SectionName.Width = 800;
+            // 
             // SectionPath
             // 
             this.SectionPath.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -161,17 +172,6 @@ namespace DotSpatialForm.UI
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // DataPair
-            // 
-            this.DataPair.HeaderText = "Group";
-            this.DataPair.Name = "DataPair";
-            // 
-            // SectionName
-            // 
-            this.SectionName.HeaderText = "SectionName";
-            this.SectionName.Name = "SectionName";
-            this.SectionName.Width = 800;
-            // 
             // SharpenProfilesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -193,7 +193,7 @@ namespace DotSpatialForm.UI
             this.MinimizeBox = false;
             this.Name = "SharpenProfilesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "尖灭地层一致";
+            this.Text = "Fix Pinch-out Strata";
             this.Load += new System.EventHandler(this.SharpenProfilesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

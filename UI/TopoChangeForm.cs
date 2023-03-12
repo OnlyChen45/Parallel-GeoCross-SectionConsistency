@@ -127,12 +127,34 @@ namespace DotSpatialForm.UI
             }
             return result;
         }
+        private string createGDB(string folder)
+        {
+            string workspacegdb = "";
+            string[] files = Directory.GetDirectories(folder);
+            bool containGDB = false;
+            foreach (string st in files)
+            {
+                string filename1 = Path.GetFileName(st);
+                if (filename1.Equals("tempWrokspace.gdb"))
+                {
+                    containGDB = true;
+                    workspacegdb = st;
+                    break;
+                }
+            }
+            if (containGDB == false)
+            {
+                workspacegdb = WrapWorker.createTempGDB(folder);
+            }
+            return workspacegdb;
+        }
         private void button5_Click(object sender, EventArgs e)
         {
             List<string[]> pairs = getDataPair();
             
             FrmMain frm = (FrmMain)this.Owner;
             string workspaceSS = ResultFolder.Text;//dir + "\\temp";
+            string gdbstring =createGDB(workspaceSS);
            // string gdb=frm.
             foreach (string[] pair in pairs)
             {
@@ -149,14 +171,14 @@ namespace DotSpatialForm.UI
                 string path2 = pair[1];
                 string result1, result2;
                 //WrapWorker.polyNormalization(path1,workspaceSS,)
-                WrapWorker.dealTopoChange(path1, path2, workspaceSS, out result1, out result2,frm. idname,name1,name2, 0.1);
+                WrapWorker.dealTopoChange(path1, path2, workspaceSS, out result1, out result2,frm. idname,name1,name2, gdbstring, frm.arcpypath, 0.1,frm.idname);
                 //result1 = WrapWorker.polyNormalization(result1, workspaceFolder.Text, this.workspacegdb, arcpyPath1.Text, "dealTopo1nor", IdNameBox.Text);
                 //result2 = WrapWorker.polyNormalization(result2, workspaceFolder.Text, this.workspacegdb, arcpyPath1.Text, "dealTopo2nor", IdNameBox.Text);
                 frm.NotificationBox.AppendText(result1 + "\n");
                 frm. NotificationBox.AppendText(result2+"\n\n");
                 string par1 = get3Dpar(result1);
                 string par2 = get3Dpar(result2);
-                if (File.Exists(par1ori)&&File.Exists(par2ori))//判断一下参数是否存在，不存在的时候就跳过省的报错
+                if (File.Exists(par1ori)&&File.Exists(par2ori))//Determine whether the parameter exists. If it does not exist, skip the error 
 
                 {
                     FileStream fileStream1 = new FileStream(par1ori, FileMode.Open);
@@ -174,7 +196,7 @@ namespace DotSpatialForm.UI
                 frm.addtoMap.Add(result2);
 
             }
-            frm.NotificationBox.AppendText("地层相对位置不对应情况已处理完成\n\n");
+            frm.NotificationBox.AppendText("The discordant situation of relative position of strata has been solved\n\n");
             this.Close();
         }
         

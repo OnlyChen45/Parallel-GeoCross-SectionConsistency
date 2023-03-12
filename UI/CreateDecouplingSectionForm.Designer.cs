@@ -64,7 +64,7 @@ namespace DotSpatialForm.UI
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(93, 32);
             this.button4.TabIndex = 64;
-            this.button4.Text = "关闭";
+            this.button4.Text = "Cancel";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -75,7 +75,7 @@ namespace DotSpatialForm.UI
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(93, 32);
             this.button5.TabIndex = 63;
-            this.button5.Text = "执行";
+            this.button5.Text = "OK";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -85,9 +85,9 @@ namespace DotSpatialForm.UI
             this.label2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(23, 8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 16);
+            this.label2.Size = new System.Drawing.Size(152, 16);
             this.label2.TabIndex = 62;
-            this.label2.Text = "剖面数据";
+            this.label2.Text = "Cross-section Data";
             // 
             // label1
             // 
@@ -95,9 +95,9 @@ namespace DotSpatialForm.UI
             this.label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(26, 386);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 16);
+            this.label1.Size = new System.Drawing.Size(104, 16);
             this.label1.TabIndex = 61;
-            this.label1.Text = "结果文件夹";
+            this.label1.Text = "Resultfolder";
             // 
             // SelectResultfolder
             // 
@@ -192,7 +192,7 @@ namespace DotSpatialForm.UI
             this.MinimizeBox = false;
             this.Name = "CreateDecouplingSectionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "剖面内插";
+            this.Text = "Section interpolation";
             this.Load += new System.EventHandler(this.CreateDecouplingSectionForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

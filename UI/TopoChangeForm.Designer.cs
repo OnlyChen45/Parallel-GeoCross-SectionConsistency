@@ -32,6 +32,8 @@ namespace DotSpatialForm.UI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TopoChangeForm));
             this.SectionPath = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DataPair = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SectionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.ResultFolder = new System.Windows.Forms.TextBox();
@@ -41,8 +43,6 @@ namespace DotSpatialForm.UI
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.DataPair = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SectionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,6 +66,17 @@ namespace DotSpatialForm.UI
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(785, 306);
             this.dataGridView1.TabIndex = 1;
+            // 
+            // DataPair
+            // 
+            this.DataPair.HeaderText = "Group";
+            this.DataPair.Name = "DataPair";
+            // 
+            // SectionName
+            // 
+            this.SectionName.HeaderText = "SectionName";
+            this.SectionName.Name = "SectionName";
+            this.SectionName.Width = 800;
             // 
             // button2
             // 
@@ -114,9 +125,9 @@ namespace DotSpatialForm.UI
             this.label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(44, 387);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 16);
+            this.label1.Size = new System.Drawing.Size(112, 16);
             this.label1.TabIndex = 10;
-            this.label1.Text = "结果文件夹";
+            this.label1.Text = "Result Folder";
             // 
             // label2
             // 
@@ -124,9 +135,9 @@ namespace DotSpatialForm.UI
             this.label2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(41, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 16);
+            this.label2.Size = new System.Drawing.Size(152, 16);
             this.label2.TabIndex = 11;
-            this.label2.Text = "剖面数据";
+            this.label2.Text = "Cross-Section Data";
             // 
             // button4
             // 
@@ -135,7 +146,7 @@ namespace DotSpatialForm.UI
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(93, 32);
             this.button4.TabIndex = 53;
-            this.button4.Text = "关闭";
+            this.button4.Text = "Cancel";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -146,7 +157,7 @@ namespace DotSpatialForm.UI
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(93, 32);
             this.button5.TabIndex = 52;
-            this.button5.Text = "执行";
+            this.button5.Text = "OK";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -160,17 +171,6 @@ namespace DotSpatialForm.UI
             this.button6.TabIndex = 54;
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // DataPair
-            // 
-            this.DataPair.HeaderText = "Group";
-            this.DataPair.Name = "DataPair";
-            // 
-            // SectionName
-            // 
-            this.SectionName.HeaderText = "SectionName";
-            this.SectionName.Name = "SectionName";
-            this.SectionName.Width = 800;
             // 
             // TopoChangeForm
             // 
@@ -193,7 +193,7 @@ namespace DotSpatialForm.UI
             this.MinimizeBox = false;
             this.Name = "TopoChangeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "错动地层一致";
+            this.Text = "Fix No-corresponding Arcs";
             this.Load += new System.EventHandler(this.TopoChangeForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
