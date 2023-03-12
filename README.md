@@ -3,11 +3,16 @@
   Parallel-GeoCross-SectionConsistency is a desktop software developed based on C#.Net and Python. It realizes the topological consistency of parallel geological section data and the section comparison algorithm 3D modeling function and visualization. In geological 3D modeling work, it is tedious and inefficient to manually find the correspondence of each boundary line in the face of relatively complex geological profile data. This software provides a solution on the desktop side.
 ## Dependency
 -.NET Framework 4.7.2
+
 -Dotspatial 1.7
+
 -GDAL 3.7.2
+
 -Triangle.Net (https://github.com/wo80/Triangle.NET)
+
 -ArcPy
-  GDAL, Dotspatial, and Triangle.Net have been localized and integrated into the program, while ArcPy, as commercial software, needs to be installed by the user, and this software mainly calls the external python interface provided by it. GDAL's C# release Geometry. The intersection method, when processing the same set of data for spatial superposition several times, will, Therefore, the author had to use CMD to call the relevant methods in Arcpy in the background to remove these error points. Due to the development cycle of the software, the authors have not yet written a module to replace the method in Arcpy, so they have to use this commercial module for the time being. In addition, the call to Arcpy requires that every character in the file path is in the Ascii table.
+
+    GDAL, Dotspatial, and Triangle.Net have been localized and integrated into the program, while ArcPy, as commercial software, needs to be installed by the user, and this software mainly calls the external python interface provided by it. GDAL's C# release Geometry. The intersection method, when processing the same set of data for spatial superposition several times, will, Therefore, the author had to use CMD to call the relevant methods in Arcpy in the background to remove these error points. Due to the development cycle of the software, the authors have not yet written a module to replace the method in Arcpy, so they have to use this commercial module for the time being. In addition, the call to Arcpy requires that every character in the file path is in the Ascii table.
 ## Installation
   Download the project library directly to install it. It is recommended to use Visual Studio 2019 to open it. Environment configuration should be done in the menu of the software.
 ## Input
